@@ -8,6 +8,7 @@ const CustomersDetails = ({ customers }) => {
   const changeView = () => {
     setView(!view);
   };
+  const strDate = new Date(customers.updatedDate);
   const deleteCustomer = (name) => {
     axios.delete(`http://localhost:3000/api/creditTracker/deleteOne/${name}`).then(res => console.log(res.data)).catch(err => console.log(err))
     window.location.reload();
@@ -20,22 +21,22 @@ const CustomersDetails = ({ customers }) => {
      window.location.reload();
   }
   return (
-    <div>
+    <div className="cusomer-detail">
        <div>
           <ul>
-            <li>{customers.customerName}</li>
+            <li className="detail-name">{customers.customerName}</li>
             <li>{view ?<input defaultValue={customers.credit} onChange={(e) => {
               console.log(newAmount)
                 setNewAmount(e.target.value);
             }}/>:customers.credit}</li>
-            <li>{customers.updatedDate}</li>
+            <li>{strDate.toLocaleString('fr-FR')}</li>
           </ul>
         </div>
-      <button onClick={changeView}>Update Customer's Credit</button>
+      <button onClick={changeView}>Edit Customer's Credit</button>
       <button onClick={() => {
         console.log('new');
         changeAmount(customers.customerName);
-      }}>Add new credit</button> 
+      }}>Update credit</button> 
       <button onClick={() => deleteCustomer(customers.customerName)}>Delete Customer</button>
     </div>
   );

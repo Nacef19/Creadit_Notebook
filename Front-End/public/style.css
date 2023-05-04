@@ -1,0 +1,38 @@
+body {
+    background-image: url("./b-image.jpg");
+    background-size: 40%;
+    background-repeat: no-repeat;
+    
+}
+.credit-footer {
+    text-align: right;
+}
+h1 {
+    text-align: center;
+}
+.create-customer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+button {
+    margin-right: 10px;
+}
+
+.detail-name {
+    font-weight: bold;
+}
+
+/*.cusomer-detail :hover{
+    background-color: rgb(237, 235, 235);
+}*/
+
+.cusomer-detail {
+    text-align: center;
+    width: 30%;
+    margin: auto;
+}
+
+.cusomer-detail li{
+    list-style-type: none;
+}
