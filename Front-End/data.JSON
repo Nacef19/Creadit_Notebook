@@ -1,0 +1,23 @@
+{
+    "customers": [
+      {
+        "id": 1,
+        "name": "John Smith",
+        "amount": 100,
+        "date": "2023-04-30"
+      },
+      {
+        "id": 2,
+        "name": "Jane Doe",
+        "amount": 50,
+        "date": "2023-04-29"
+      },
+      {
+        "id": 3,
+        "name": "Bob Johnson",
+        "amount": 200,
+        "date": "2023-04-28"
+      }
+    ]
+  }
+  

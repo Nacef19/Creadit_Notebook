@@ -5,7 +5,11 @@ const creditSchema = new mongoose.Schema({
   id: Number,
   customerName: String,
   credit: Number,
-  updatedDate: Date
+  updatedDate: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
 });
 
 const Credit = mongoose.model("Credit", creditSchema);

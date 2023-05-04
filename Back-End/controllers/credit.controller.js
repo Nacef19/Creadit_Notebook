@@ -11,8 +11,8 @@ const showAllCredits = async (req, res) => {
 
 const addCredit = async (req, res) => {
   try {
-    const customerName = req.body.customerName;
-    const credit = req.body.credit;
+    const customerName = req.body.customerName.trim();
+    const credit = req.body.credit.trim();
     const updatedDate = req.body.updatedDate;
     const credits = await Credit.create({ customerName, credit, updatedDate });
     res.status(200).send(credits);
@@ -23,14 +23,15 @@ const addCredit = async (req, res) => {
 
 const updateCredit = async (req, res) => {
   try {
-    const customerName = req.params.customerName;
-    const credit = req.body.credit;
-    const updatedDate = req.body.updatedDate;
-    const credits = await Credit.findOneAndUpdate(
+    const customerName = req.params.customerName.trim();
+    const credit = req.body.credit.trim();
+    const updatedDate = Date.now();
+    const credits = await Credit.updateOne(
       { customerName: customerName },
-      { credit: credit, updatedDate: updatedDate },
+      { $set: { credit: credit, updatedDate: updatedDate } },
       { new: true },
     );
+    const newCred = await Credit.find({ customerName: customerName });
     res.status(200).send(credits);
   } catch (err) {
     res.status(500).send(err);
@@ -39,7 +40,7 @@ const updateCredit = async (req, res) => {
 
 const deleteOneCredit = async (req, res) => {
   try {
-    const customerName = req.params.customerName;
+    const customerName = req.params.customerName.trim();
     if (customerName) {
       const credits = await Credit.deleteOne({ customerName: customerName });
       res.status(200).send(credits);
@@ -58,4 +59,10 @@ const deleteAllCredits = async (req, res) => {
   }
 };
 
-module.exports = { showAllCredits, addCredit, updateCredit, deleteOneCredit, deleteAllCredits };
+module.exports = {
+  showAllCredits,
+  addCredit,
+  updateCredit,
+  deleteOneCredit,
+  deleteAllCredits,
+};
